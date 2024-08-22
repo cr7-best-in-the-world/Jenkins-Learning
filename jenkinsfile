@@ -1,0 +1,51 @@
+// this jenkins file is for testing different stages, sleep, timeout
+
+
+
+pipeline {
+    agent any
+
+    // set environment variables 
+    environment {
+        NAME = "cristiano ronaldo"
+        AGE = 39
+        password = credentials("password")   //manage-jenkins -> credentials -> system -> add credentials -> text secret -> provide ID as pasword and give secret: testsensen
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Build Hello World'
+                echo "$NAME"
+                echo "$AGE"
+                echo "$password"
+            }
+        }
+    
+        // stage('Test') {
+        //     steps {
+        //         echo 'Test Hello World'
+        //     }
+        // }
+    
+        // stage('Deploy') {
+        //     steps {
+        //         sh '''
+        //             echo "Deploy"
+        //             echo "Hello World"
+                
+        //         '''
+
+        //         // retry some code
+        //         retry(3) {
+        //             sh "echo trying ......."
+        //         }
+
+        //         // to set timeout for some command, you can set max duration for a command to execute completely, below code will wait for time:value for the cmd to complete else it will abort it
+        //         timeout(time: 10, unit: "SECONDS") {
+        //             sh "sleep 10"
+        //         }
+        //     }
+        // }
+    }
+}
