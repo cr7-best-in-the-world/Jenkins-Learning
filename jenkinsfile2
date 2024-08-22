@@ -1,0 +1,19 @@
+// this jenkins file checks for docker agent installation 
+// only during the request the conatiner is created and after the work is done, jenkins stops and removes the container
+
+
+pipeline{
+    agent {
+        docker {
+            image "node:16-alpine"
+        }
+    }
+
+    stages{
+        stage("Test"){
+            steps{
+                sh "node --version"
+            }
+        }
+    }
+}
